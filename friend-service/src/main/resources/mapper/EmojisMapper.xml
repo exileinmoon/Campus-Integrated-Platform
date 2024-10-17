@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="stu.friendservice.mapper.EmojisMapper">
+
+    <resultMap id="BaseResultMap" type="stu.friendservice.entity.Emojis">
+            <id property="id" column="id" jdbcType="INTEGER"/>
+            <result property="emoji_code" column="emoji_code" jdbcType="VARCHAR"/>
+            <result property="emoji_url" column="emoji_url" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,emoji_code,emoji_url
+    </sql>
+</mapper>

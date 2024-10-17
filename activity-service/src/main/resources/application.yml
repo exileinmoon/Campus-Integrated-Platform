@@ -1,0 +1,44 @@
+spring:
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+    virtual-host: /
+    connection-timeout: 5000ms  # 连接超时时间
+    requested-heartbeat: 60       # 心跳间隔
+    publisher-returns: true        # 返回消息
+  config:
+    import: "optional:nacos:${spring.cloud.nacos.config.file-extension}"
+  application:
+    name: activity-service
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848
+      config:
+        file-extension: yaml  # 配置文件格式为 yaml
+        shared-configs:
+          - activityservice.yml  # 共享配置文件名（列表格式）
+
+  datasource:
+    url: jdbc:mysql://localhost:3306/project-activity
+    username: root
+    password: 123456
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+server:
+  port: 9093
+
+aliyun:
+  oss:
+    endpoint: oss-cn-wuhan-lr.aliyuncs.com
+    accessKeyId: LTAI5tQDQKuyYozp9yz8MHzZ
+    accessKeySecret: UwiojIeHBoxDr9SQgNebBL15765CkG
+    bucketName: picture1123123
+
+mybatis-plus:
+  mapper-locations: classpath:mapper/**/*.xml
+  type-aliases-package: com.activityservice.entity
+  configuration:
+    map-underscore-to-camel-case: true

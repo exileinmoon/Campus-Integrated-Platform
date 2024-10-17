@@ -1,0 +1,19 @@
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: user-service-route  # 路由ID
+          uri: http://localhost:8081  # 后端服务地址
+          predicates:  # 路由规则
+            - Path=/user/**  # 匹配路径
+          filters:
+            - RewritePath=/user/(?<segment>.*), /${segment}  # 重写路径
+
+        - id: order-service-route
+          uri: http://localhost:8082
+          predicates:
+            - Path=/order/**
+
+      discovery:
+        locator:
+          enabled: true  # 开启基于服务发现的路由

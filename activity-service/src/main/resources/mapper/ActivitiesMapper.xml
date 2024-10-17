@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="stu.activityservice.mapper.ActivitiesMapper">
+
+    <resultMap id="BaseResultMap" type="stu.activityservice.entity.Activities">
+            <id property="id" column="id" jdbcType="INTEGER"/>
+            <result property="join_user_id" column="join_user_id" jdbcType="INTEGER"/>
+            <result property="start_time" column="start_time" jdbcType="TIMESTAMP"/>
+            <result property="end_time" column="end_time" jdbcType="TIMESTAMP"/>
+            <result property="status" column="status" jdbcType="OTHER"/>
+            <result property="address" column="address" jdbcType="VARCHAR"/>
+            <result property="max_participants" column="max_participants" jdbcType="INTEGER"/>
+            <result property="type" column="type" jdbcType="OTHER"/>
+            <result property="description" column="description" jdbcType="VARCHAR"/>
+            <result property="organizer_id" column="organizer_id" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,join_user_id,start_time,
+        end_time,status,address,
+        max_participants,type,description,
+        organizer_id
+    </sql>
+</mapper>

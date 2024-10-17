@@ -1,0 +1,90 @@
+spring:
+  config:
+    import: "optional:nacos:${spring.cloud.nacos.config.file-extension}"
+
+  application:
+    name: loginservice
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848
+
+      config:
+        file-extension: yaml  # 配置文件格式为 yaml
+        shared-configs:
+          - loginservice.yml  # 共享配置文件名（列表格式）
+
+  datasource:
+    url: jdbc:mysql://localhost:3306/project-login
+    username: root
+    password: 123456
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+#security:
+#    oauth2:
+#      client:
+#        registration:
+#          qq:
+#            client-id: your-qq-client-id
+#            client-secret: your-qq-client-secret
+#            authorization-grant-type: authorization_code
+#            redirect-uri: "http://localhost:9090/login/oauth2/code/qq"
+#            scope: openid, profile
+#            provider: qq
+#          wechat:
+#            client-id: your-wechat-client-id
+#            client-secret: your-wechat-client-secret
+#            authorization-grant-type: authorization_code
+#            redirect-uri: "http://localhost:9090/login/oauth2/code/wechat"
+#            scope: openid, profile
+#            provider: wechat
+#      provider:
+#        qq:
+#          authorization-uri: https://graph.qq.com/oauth2.0/authorize
+#          token-uri: https://graph.qq.com/oauth2.0/token
+#          user-info-uri: https://graph.qq.com/oauth2.0/me
+#        wechat:
+#          authorization-uri: https://open.weixin.qq.com/connect/qrconnect
+#          token-uri: https://api.weixin.qq.com/sns/oauth2/access_token
+#          user-info-uri: https://api.weixin.qq.com/sns/userinfo
+
+server:
+  port: 9090
+  servlet:
+    session:
+      cookie:
+        enabled: false
+      timeout: 30m
+
+tencent:
+  sms:
+    secretId: your-secret-id
+    secretKey: your-secret-key
+    sdkAppId: your-sms-sdk-app-id
+    signName: your-sign-name
+    templateId: your-template-id
+
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: stu.loginservice.entity
+
+kaptcha:
+  border: false
+  textproducer:
+    font:
+      color: black
+      size: 30
+    char:
+      string: abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789
+  image:
+    width: 100
+    height: 60
+  session:
+    key: captcha
+
+jwt:
+  secret: your_jwt_secret_here
+  expiration: 3600

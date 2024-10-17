@@ -1,0 +1,35 @@
+spring:
+  config:
+    import: "optional:nacos:${spring.cloud.nacos.config.file-extension}"
+  application:
+    name: trade-service
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848
+      config:
+        file-extension: yaml  # 配置文件格式为 yaml
+        shared-configs:
+          - tradeservice.yml  # 共享配置文件名（列表格式）
+
+  datasource:
+    url: jdbc:mysql://localhost:3306/project1
+    username: root
+    password: 123456
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+server:
+  port: 9091
+
+aliyun:
+  oss:
+    endpoint: oss-cn-wuhan-lr.aliyuncs.com
+    accessKeyId: LTAI5tQDQKuyYozp9yz8MHzZ
+    accessKeySecret: UwiojIeHBoxDr9SQgNebBL15765CkG
+    bucketName: picture1123123
+
+mybatis-plus:
+  mapper-locations: classpath:mapper/**/*.xml
+  type-aliases-package: com.tradeservice.entity
+  configuration:
+    map-underscore-to-camel-case: true

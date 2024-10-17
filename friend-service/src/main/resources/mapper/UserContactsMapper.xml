@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="stu.friendservice.mapper.UserContactsMapper">
+
+    <resultMap id="BaseResultMap" type="stu.friendservice.entity.UserContacts">
+            <id property="id" column="id" jdbcType="INTEGER"/>
+            <result property="user_id" column="user_id" jdbcType="INTEGER"/>
+            <result property="phone" column="phone" jdbcType="VARCHAR"/>
+            <result property="qq" column="qq" jdbcType="VARCHAR"/>
+            <result property="wechat" column="wechat" jdbcType="VARCHAR"/>
+            <result property="created_at" column="created_at" jdbcType="TIMESTAMP"/>
+            <result property="flower" column="flower" jdbcType="INTEGER"/>
+            <result property="view" column="view" jdbcType="INTEGER"/>
+            <result property="like" column="like" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,user_id,phone,
+        qq,wechat,created_at,
+        flower,view,like
+    </sql>
+</mapper>

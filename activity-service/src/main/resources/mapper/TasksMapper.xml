@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="stu.activityservice.mapper.TaskMapper">
+
+    <resultMap id="BaseResultMap" type="stu.activityservice.entity.Tasks">
+            <id property="task_id" column="task_id" jdbcType="INTEGER"/>
+            <result property="publisher_id" column="publisher_id" jdbcType="INTEGER"/>
+            <result property="title" column="title" jdbcType="VARCHAR"/>
+            <result property="description" column="description" jdbcType="VARCHAR"/>
+            <result property="location" column="location" jdbcType="VARCHAR"/>
+            <result property="reward" column="reward" jdbcType="DECIMAL"/>
+            <result property="deadline" column="deadline" jdbcType="TIMESTAMP"/>
+            <result property="status" column="status" jdbcType="OTHER"/>
+            <result property="created_at" column="created_at" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        task_id,publisher_id,title,
+        description,location,reward,
+        deadline,status,created_at
+    </sql>
+</mapper>
