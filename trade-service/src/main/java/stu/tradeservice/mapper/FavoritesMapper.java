@@ -11,7 +11,7 @@ public interface FavoritesMapper extends BaseMapper<Favorites> {
 
     // 增加收藏
     @Insert("INSERT INTO favorites(user_id, product_id, created_at) " +
-            "VALUES(#{userId}, #{productId}, #{createdAt})")
+            "VALUES(#{user_id}, #{product_id}, #{created_at})")
     int insertFavorite(Favorites favorite);
 
     // 查询所有收藏
@@ -29,6 +29,6 @@ public interface FavoritesMapper extends BaseMapper<Favorites> {
     int updateFavorite(Favorites favorite);
 
     // 根据 ID 删除收藏
-    @Delete("DELETE FROM favorites WHERE id = #{id}")
-    int deleteFavorite(Long id);
+    @Delete("DELETE FROM favorites WHERE product_id = #{productId} AND user_id = #{userId}")
+    void deleteFavorite(long productId, long userId);
 }

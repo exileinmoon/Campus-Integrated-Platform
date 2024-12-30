@@ -1,4 +1,7 @@
 spring:
+  data:
+    mongodb:
+      uri: mongodb://localhost:27017/pic
   config:
     import: "optional:nacos:${spring.cloud.nacos.config.file-extension}"
 

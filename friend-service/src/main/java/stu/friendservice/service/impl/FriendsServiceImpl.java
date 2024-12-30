@@ -2,16 +2,21 @@ package stu.friendservice.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import stu.friendservice.DTO.FriendDTO;
+import stu.friendservice.DTO.FriendRecomendDTO;
 import stu.friendservice.client.UserClient;
 import stu.friendservice.entity.Friends;
 import stu.friendservice.entity.Messages;
+import stu.friendservice.entity.UserDetails;
 import stu.friendservice.entity.Users;
+import stu.friendservice.mapper.ChatSessionsMapper;
 import stu.friendservice.mapper.MessagesMapper;
+import stu.friendservice.mapper.UserDetailsMapper;
 import stu.friendservice.service.FriendsService;
 import stu.friendservice.mapper.FriendsMapper;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -27,6 +32,10 @@ public class FriendsServiceImpl implements FriendsService{
     private FriendsMapper friendMapper;
     @Autowired
     private UserClient userClient;
+    @Autowired
+    private ChatSessionsMapper chatSessionsMapper;
+    @Autowired
+    private UserDetailsMapper userDetailsMapper;
 
     @Override
     public void addFriend(Integer userId, Integer friendId) {
@@ -59,6 +68,21 @@ public class FriendsServiceImpl implements FriendsService{
 
     }
 
+    @Override
+    public List<FriendRecomendDTO> getRecommendation(Integer userId) {
+        List<FriendRecomendDTO> friendRecomendDTOList = new ArrayList<>();
+        List<UserDetails> userDetailsList = userDetailsMapper.selectRandom();
+        for(UserDetails userDetails : userDetailsList){
+            Users users = userClient.getUserById(userDetails.getUser_id());
+            FriendRecomendDTO friendRecomendDTO = new FriendRecomendDTO();
+            friendRecomendDTO.setUser(users);
+            friendRecomendDTO.setUserDetails(userDetails);
+            friendRecomendDTOList.add(friendRecomendDTO);
+
+        }
+        return friendRecomendDTOList;
+
+    }
 }
 
 

@@ -23,4 +23,5 @@
         max_participants,type,description,
         organizer_id
     </sql>
+
 </mapper>

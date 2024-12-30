@@ -10,4 +10,6 @@ public interface CommentsService {
     Comments selectCommentById(Long id);
     int updateComment(Comments comment);
     int deleteComment(Long id);
+
+    boolean addComments(Comments comments);
 }

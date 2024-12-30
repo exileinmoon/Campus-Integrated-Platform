@@ -1,6 +1,7 @@
 package stu.tradeservice.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import stu.tradeservice.entity.Products;
 import stu.tradeservice.entity.Sales;
 import org.apache.ibatis.annotations.*;
 
@@ -31,4 +32,6 @@ public interface SalesMapper extends BaseMapper<Sales> {
     int deleteSale(Long id);
     @Select("SELECT * FROM sales WHERE product_id = #{id}")
     Sales selectSaleByProductId(Long id);
+    @Select("SELECT * FROM sales join products WHERE  sales.product_id = products.id and sales.user_id = #{id}")
+    List<Products> selectProductsByUserId(Long id);
 }

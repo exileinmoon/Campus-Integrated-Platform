@@ -1,17 +1,13 @@
 package stu.friendservice.service;
 
 import stu.friendservice.entity.Replies;
-import java.util.List;
+import com.baomidou.mybatisplus.extension.service.IService;
 
-public interface RepliesService {
+/**
+* @author 李
+* @description 针对表【replies】的数据库操作Service
+* @createDate 2024-12-17 08:53:54
+*/
+public interface RepliesService extends IService<Replies> {
 
-    Replies getReplyById(Integer id);
-
-    List<Replies> getRepliesByCommentId(Integer comment_id);
-
-    boolean createReply(Replies replies);
-
-    boolean updateReply(Replies replies);
-
-    boolean deleteReply(Integer id);
 }

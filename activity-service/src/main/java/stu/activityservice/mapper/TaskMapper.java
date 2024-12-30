@@ -16,7 +16,7 @@ import java.util.List;
 @Mapper
 public interface TaskMapper {
     @Insert("INSERT INTO tasks (publisher_id, title, description, location, reward, deadline, status) " +
-            "VALUES (#{publisherId}, #{title}, #{description}, #{location}, #{reward}, #{deadline}, #{status})")
+            "VALUES (#{publisher_id}, #{title}, #{description}, #{location}, #{reward}, #{deadline}, #{status})")
     void insertTask(Tasks task);
 
     @Select("SELECT * FROM tasks WHERE task_id = #{taskId}")

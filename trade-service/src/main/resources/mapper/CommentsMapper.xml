@@ -6,6 +6,7 @@
 
     <resultMap id="BaseResultMap" type="stu.tradeservice.entity.Comments">
             <id property="id" column="id" jdbcType="INTEGER"/>
+            <result property="star" column="star" jdbcType="INTEGER"/>
             <result property="product_id" column="product_id" jdbcType="INTEGER"/>
             <result property="user_id" column="user_id" jdbcType="INTEGER"/>
             <result property="content" column="content" jdbcType="VARCHAR"/>
@@ -13,7 +14,7 @@
     </resultMap>
 
     <sql id="Base_Column_List">
-        id,product_id,user_id,
+        id,product_id,user_id,star,
         content,created_at
     </sql>
 </mapper>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="stu.friendservice.mapper.PostInteractionsMapper">
+
+    <resultMap id="BaseResultMap" type="stu.friendservice.entity.PostInteractions">
+            <id property="interaction_id" column="interaction_id" jdbcType="INTEGER"/>
+            <result property="post_id" column="post_id" jdbcType="INTEGER"/>
+            <result property="user_id" column="user_id" jdbcType="INTEGER"/>
+            <result property="interaction_type" column="interaction_type" jdbcType="OTHER"/>
+            <result property="comment_text" column="comment_text" jdbcType="VARCHAR"/>
+            <result property="created_at" column="created_at" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        interaction_id,post_id,user_id,
+        interaction_type,comment_text,created_at
+    </sql>
+</mapper>

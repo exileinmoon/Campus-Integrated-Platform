@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import stu.friendservice.DTO.FriendDTO;
+import stu.friendservice.DTO.FriendRecomendDTO;
 import stu.friendservice.entity.ChatMessage;
 import stu.friendservice.entity.Messages;
 import stu.friendservice.service.FriendsService;
@@ -19,12 +20,17 @@ public class FriendController {
     private FriendsService friendService;
 
     // 添加好友
-    @PostMapping
-    public ResponseEntity<Void> addFriend(@RequestParam Integer userId, @RequestParam Integer friendId) {
+    @PostMapping("/addFriend/{userId}/{friendId}")
+    public ResponseEntity<Void> addFriend(@PathVariable Integer userId, @PathVariable Integer friendId) {
         friendService.addFriend(userId, friendId);
         return ResponseEntity.ok().build();
     }
 
+    @GetMapping("/recommendation/{userId}")
+    public List<FriendRecomendDTO> getRecommendation(@PathVariable Integer userId) {
+        List<FriendRecomendDTO> friends = friendService.getRecommendation(userId);
+        return friends;
+    }
     // 获取好友列表
     @GetMapping("/{userId}")
     public ResponseEntity<List<FriendDTO>> getFriends(@PathVariable Integer userId) {

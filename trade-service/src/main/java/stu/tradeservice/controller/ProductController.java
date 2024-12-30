@@ -1,14 +1,24 @@
 package stu.tradeservice.controller;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
+import org.elasticsearch.action.search.SearchRequest;
+import org.elasticsearch.action.search.SearchResponse;
+import org.elasticsearch.client.RequestOptions;
+import org.elasticsearch.client.RestHighLevelClient;
+import org.elasticsearch.index.query.QueryBuilders;
 import stu.tradeservice.DTO.ProductDetailsDTO;
+import stu.tradeservice.entity.Comments;
 import stu.tradeservice.entity.Products;
+import stu.tradeservice.service.CommentsService;
 import stu.tradeservice.service.ProductDetailService;
+import stu.tradeservice.service.ProductSearchService;
 import stu.tradeservice.service.ProductsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 
@@ -37,6 +47,24 @@ public class ProductController {
         result.put("current", productPage.getCurrent());
         result.put("pages", productPage.getPages());
         return result;
+    }
+    @Autowired
+    private ProductSearchService productSearchService;
+
+    @PostMapping("/search")
+    public List<Map<String, Object>> searchProducts(@RequestBody Map<String, Object> params) throws IOException {
+        System.out.println("params: " + params);
+        String query = (String) params.get("query");
+        Double minPrice = params.get("minPrice") != null ? ((Number) params.get("minPrice")).doubleValue() : null;
+        Double maxPrice = params.get("maxPrice") != null ? ((Number) params.get("maxPrice")).doubleValue() : null;
+
+        String category = (String) params.get("category");
+
+        return productSearchService.searchProducts(query, minPrice, maxPrice, category);
+    }
+    @GetMapping("/myproducts/{id}")
+    public List<Products> getMyProducts(@PathVariable Long id) {
+        return productsService.getMyProducts(id);
     }
 
     // 根据ID获取商品详情
@@ -70,5 +98,12 @@ public class ProductController {
         Map<String, Object> result = new HashMap<>();
         result.put("success", success);
         return result;
+    }
+    @Autowired
+    private CommentsService commentsService;
+    @PostMapping("/addcomments")
+    public void addComments( @RequestBody Comments comments) {
+        System.out.println(comments);
+        commentsService.addComments(comments);
     }
 }

@@ -1,6 +1,5 @@
 package stu.tradeservice.DTO;
 
-import stu.tradeservice.entity.Comments;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -22,11 +21,13 @@ public class ProductDetailsDTO {
     @Getter
     @Setter
     public static class SellerDTO {
+        private Integer id;
         // Getters and Setters
         private String name;
         private String avatar; // 卖家头像URL
         private String phone; // 卖家的联系方式
-        public SellerDTO(String username, String avatar, String phone) {
+        public SellerDTO(String username, String avatar, String phone, Integer id) {
+            this.id = id;
             this.name = username;
             this.avatar = avatar;
             this.phone = phone;
@@ -51,6 +52,7 @@ public class ProductDetailsDTO {
     public static class CommentDTO {
         private Long id;
         private String user;
+
         private String text;
 
         // Getters and Setters
@@ -79,7 +81,7 @@ public class ProductDetailsDTO {
         }
     }
 
-    private List<Comments> comments; // 评论列表
+    private List<CommentsDTO> comments; // 评论列表
 
     // Getters and Setters
     public Long getId() {
@@ -154,11 +156,11 @@ public class ProductDetailsDTO {
         this.description = description;
     }
 
-    public List<Comments> getComments() {
+    public List<CommentsDTO> getComments() {
         return comments;
     }
 
-    public void setComments(List<Comments> comments) {
+    public void setComments(List<CommentsDTO> comments) {
         this.comments = comments;
     }
 }

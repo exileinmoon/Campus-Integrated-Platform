@@ -24,4 +24,7 @@ public interface ProductsService {
 
     boolean deleteProduct(Long id);
 
+    boolean addComments(Long productId, Long userId, String text, Integer stars);
+
+    List<Products> getMyProducts(Long id);
 }

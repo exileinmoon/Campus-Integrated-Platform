@@ -14,6 +14,10 @@ public interface FavoritesService {
     List<Favorites> selectAllFavorites();
     Favorites selectFavoriteById(Long id);
     int updateFavorite(Favorites favorite);
-    int deleteFavorite(Long id);
+    
     IPage<Products> getProducts(int page, int size);
+
+    Favorites addFavorite(Long productId, Long userId);
+
+    void deleteFavorite(Long productId, Long userId);
 }

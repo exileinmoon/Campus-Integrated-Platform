@@ -24,4 +24,6 @@ public interface UserDetailsMapper {
 
     @Delete("DELETE FROM user_details WHERE id = #{id}")
     int deleteById(@Param("id") Integer id);
+    @Select("SELECT * FROM user_details ORDER BY RAND() LIMIT 5")
+    List<UserDetails> selectRandom();
 }

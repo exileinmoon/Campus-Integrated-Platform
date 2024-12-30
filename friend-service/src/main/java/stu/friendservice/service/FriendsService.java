@@ -1,6 +1,7 @@
 package stu.friendservice.service;
 
 import stu.friendservice.DTO.FriendDTO;
+import stu.friendservice.DTO.FriendRecomendDTO;
 import stu.friendservice.entity.Messages;
 
 import java.util.List;
@@ -16,4 +17,6 @@ public interface FriendsService  {
     void removeFriend(Integer id);
 
     List<Messages> getMessageById(Integer Id, Integer friendId);
+
+    List<FriendRecomendDTO> getRecommendation(Integer userId);
 }

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="stu.friendservice.mapper.PostsMapper">
+
+    <resultMap id="BaseResultMap" type="stu.friendservice.entity.Posts">
+            <id property="id" column="id" jdbcType="BIGINT"/>
+            <result property="section_id" column="section_id" jdbcType="VARCHAR"/>
+            <result property="user_id" column="user_id" jdbcType="BIGINT"/>
+            <result property="title" column="title" jdbcType="VARCHAR"/>
+            <result property="content" column="content" jdbcType="VARCHAR"/>
+            <result property="views" column="views" jdbcType="INTEGER"/>
+            <result property="comments" column="comments" jdbcType="INTEGER"/>
+            <result property="likes" column="likes" jdbcType="INTEGER"/>
+            <result property="status" column="status" jdbcType="TINYINT"/>
+            <result property="is_top" column="is_top" jdbcType="TINYINT"/>
+            <result property="is_hot" column="is_hot" jdbcType="TINYINT"/>
+            <result property="created_at" column="created_at" jdbcType="TIMESTAMP"/>
+            <result property="updated_at" column="updated_at" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,section_id,user_id,
+        title,content,views,
+        comments,likes,status,
+        is_top,is_hot,created_at,
+        updated_at
+    </sql>
+
+</mapper>

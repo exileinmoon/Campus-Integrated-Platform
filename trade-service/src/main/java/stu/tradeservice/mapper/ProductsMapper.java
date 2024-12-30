@@ -39,4 +39,5 @@ public interface ProductsMapper extends BaseMapper<Products> {
     // 根据 ID 删除产品
     @Delete("DELETE FROM products WHERE id = #{id}")
     int deleteProduct(Long id);
+
 }

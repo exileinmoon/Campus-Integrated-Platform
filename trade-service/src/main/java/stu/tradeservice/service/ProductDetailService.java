@@ -1,5 +1,6 @@
 package stu.tradeservice.service;
 
+import stu.tradeservice.DTO.CommentsDTO;
 import stu.tradeservice.DTO.ProductDetailsDTO;
 import stu.tradeservice.client.UserClient;
 import stu.tradeservice.entity.Comments;
@@ -14,6 +15,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -41,10 +43,17 @@ public class ProductDetailService {
 
         // 获取销售信息
         Sales sales = salesMapper.selectSaleByProductId(id);
-
-        // 获取评论列表
-        List<Comments> commentsList = commentsMapper.selectByProductId(id);
-
+        System.out.println(sales);
+        List<CommentsDTO> commentsList = new ArrayList<CommentsDTO>();
+        for(Comments comments:commentsMapper.selectByProductId(id)){
+            System.out.println(comments);
+            CommentsDTO commentsDTO = new CommentsDTO();
+           commentsDTO.setComments(comments);
+            commentsDTO.setUsername(userClient.getUserById(comments.getUser_id()).getUsername());
+            commentsDTO.setAvatar(userClient.getUserById(comments.getUser_id()).getAvatar());
+            commentsDTO.setFlowers(666);
+            commentsList.add(commentsDTO);
+        }
         // 获取卖家信息
         Long sellerId = Long.valueOf(sales.getUser_id());
         Users seller = userClient.getUserById(sellerId);
@@ -63,7 +72,7 @@ public class ProductDetailService {
         productDetailsDTO.setComments(commentsList);
 
         // 设置卖家信息
-        productDetailsDTO.setSeller(new ProductDetailsDTO.SellerDTO(seller.getUsername(), seller.getAvatar(), seller.getPhone()));
+        productDetailsDTO.setSeller(new ProductDetailsDTO.SellerDTO(seller.getUsername(), seller.getAvatar(), seller.getPhone(),seller.getId()));
 
         return productDetailsDTO;
     }

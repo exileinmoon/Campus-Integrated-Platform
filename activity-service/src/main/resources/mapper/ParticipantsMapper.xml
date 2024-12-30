@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="stu.activityservice.mapper.ParticipantsMapper">
+
+    <resultMap id="BaseResultMap" type="stu.activityservice.entity.Participants">
+            <id property="id" column="id" jdbcType="INTEGER"/>
+            <result property="activity_id" column="activity_id" jdbcType="INTEGER"/>
+            <result property="participant_id" column="participant_id" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,activity_id,participant_id
+    </sql>
+</mapper>

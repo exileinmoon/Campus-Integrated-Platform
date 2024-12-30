@@ -6,6 +6,7 @@ import stu.tradeservice.service.CommentsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -37,5 +38,11 @@ public class CommentsServiceImpl implements CommentsService {
     @Override
     public int deleteComment(Long id) {
         return commentsMapper.deleteComment(id);
+    }
+
+    @Override
+    public boolean addComments(Comments comments) {
+        comments.setCreated_at(new Date());
+        return commentsMapper.addComments(comments);
     }
 }

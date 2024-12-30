@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -65,13 +66,25 @@ public class FavoritesServiceImpl implements FavoritesService {
         return favoritesMapper.updateFavorite(favorite);
     }
 
-    @Override
-    public int deleteFavorite(Long id) {
-        return favoritesMapper.deleteFavorite(id);
-    }
+
 
     @Override
     public IPage<Products> getProducts(int page, int size) {
         return null;
+    }
+
+    @Override
+    public Favorites addFavorite(Long productId, Long userId) {
+        Favorites favorite = new Favorites();
+        favorite.setProduct_id(Math.toIntExact(productId));
+        favorite.setUser_id(Math.toIntExact(userId));
+        favorite.setCreated_at(new Date());
+        favoritesMapper.insertFavorite(favorite);
+        return favorite;
+    }
+
+    @Override
+    public void deleteFavorite(Long productId, Long userId) {
+        favoritesMapper.deleteFavorite(productId, userId);
     }
 }

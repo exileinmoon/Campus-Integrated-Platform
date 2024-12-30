@@ -10,8 +10,8 @@ import java.util.List;
 public interface CommentsMapper extends BaseMapper<Comments> {
 
     // 增加评论
-    @Insert("INSERT INTO comments(user_id, product_id, content, created_at) " +
-            "VALUES(#{userId}, #{productId}, #{content}, #{createdAt})")
+    @Insert("INSERT INTO comments(user_id, product_id, content, created_at,star) " +
+            "VALUES(#{user_id}, #{product_id}, #{content}, #{created_at},#{star})")
     int insertComment(Comments comment);
 
     // 查询所有评论
@@ -32,4 +32,7 @@ public interface CommentsMapper extends BaseMapper<Comments> {
 
     @Select("SELECT * FROM comments WHERE product_id = #{productId}")
     List<Comments> selectByProductId(Long productId);
+    @Insert("INSERT INTO comments(user_id, product_id, content, created_at,star) " +
+            "VALUES(#{user_id}, #{product_id}, #{content}, #{created_at},#{star})")
+    boolean addComments(Comments comments);
 }

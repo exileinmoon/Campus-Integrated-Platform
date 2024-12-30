@@ -7,7 +7,9 @@ import stu.friendservice.DTO.AddconmentDTO;
 import stu.friendservice.DTO.CardDetailDTO;
 import stu.friendservice.DTO.CommentDTO;
 import stu.friendservice.DTO.LoveCardDTO;
+import stu.friendservice.client.UserClient;
 import stu.friendservice.entity.Comments;
+import stu.friendservice.entity.Users;
 import stu.friendservice.entity.WallImages;
 import stu.friendservice.entity.LoveCards; // 假设你已经有这个实体类
 import stu.friendservice.service.CommentsService;
@@ -27,6 +29,8 @@ public class LoveController {
     private LoveCardsService LoveCardsService;
     @Autowired
     private CommentsService commentsService; // 假设你已经有这个服务接口
+    @Autowired
+    private UserClient UserClient;
 
     // 获取墙图片信息
     @GetMapping("/wall-images")
@@ -60,5 +64,11 @@ public class LoveController {
     public ResponseEntity<List<CommentDTO>> getComments(@PathVariable Integer id) {
         List<CommentDTO> commentDTO = commentsService.getComments(id);
         return ResponseEntity.ok(commentDTO);
+    }
+    @GetMapping("/user/{id}")
+    public ResponseEntity<Users> getLoveCardsByUserId(@PathVariable Integer id) {
+        Users users = UserClient.getUserById(id);
+        return ResponseEntity.ok(users);
+
     }
 }

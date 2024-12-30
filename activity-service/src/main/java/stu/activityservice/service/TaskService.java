@@ -1,8 +1,9 @@
 package stu.activityservice.service;
 
+import stu.activityservice.DTO.TasksDTO;
 import stu.activityservice.entity.Job;
+import stu.activityservice.entity.JobDetails;
 import stu.activityservice.entity.Tasks;
-import com.baomidou.mybatisplus.extension.service.IService;
 
 /**
 * @author 李
@@ -12,11 +13,21 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import java.util.List;
 
 public interface TaskService {
-    void createTask(Tasks task);
-    Tasks getTaskById(int taskId);
+
+    void createTask(TasksDTO Tasks, Integer userId);
+
+    JobDetails getTaskById(int taskId);
     List<Tasks> getTasksByPublisherId(int publisherId);
     void updateTaskStatus(int taskId, String status);
     void deleteTask(int taskId);
 
     List<Job> getAllTasks();
+
+    List<Job> getPublishedTasksByUserId(Integer userId);
+
+    List<Job> getAcceptedTasksByUserId(Integer userId);
+
+    void acceptTask(Integer userId, Integer taskId);
+
+    void settleTask(Integer taskId);
 }

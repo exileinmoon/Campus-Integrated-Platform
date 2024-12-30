@@ -7,6 +7,8 @@ import com.baomidou.mybatisplus.annotation.TableName;
 import java.io.Serializable;
 import java.util.Date;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 /**
  * 
@@ -14,6 +16,8 @@ import lombok.Data;
  */
 @TableName(value ="favorites")
 @Data
+@Getter
+@Setter
 public class Favorites implements Serializable {
     /**
      * 
